@@ -1,12 +1,12 @@
 #! /usr/bin/env node
-const cluster = require('cluster')
-const { setupCluster } = require('../index.js')
-const { loadOptions } = require('../lib/options.js')
-const { initMaster } = require('../lib/master/index.js')
+import cluster from 'cluster'
+import FastterCluster from '../index.js'
+import FastterOptions from '../lib/options.js'
+import FastterMaster from '../lib/master/index.js'
 
-setupCluster()
+FastterCluster.setupCluster()
 
 if (cluster.isMaster) {
-  const options = loadOptions()
-  initMaster(options)
+  const options = FastterOptions.loadOptions()
+  FastterMaster.initMaster(options)
 }
